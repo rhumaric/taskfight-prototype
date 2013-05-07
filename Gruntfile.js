@@ -26,7 +26,7 @@ module.exports = function (grunt) {
         files: [
           '<%= project.sources %>/*.html',
           '{.tmp,<%= project.sources %>}/styles/{,*/}*.css',
-          '{.tmp,<%= project.sources %>}/scripts/{,*/}*.js',
+          '{.tmp,<%= project.sources %>}/scripts/**/*.js',
           '<%= project.sources %>/images/{,*/}*.{png,jpg,jpeg,webp}'
         ],
         tasks: ['livereload']

@@ -10,8 +10,6 @@ them by having them "fight" against one another:
 
 ## Todo
 
- - Add tasks
- - Remove tasks
  - Edit tasks
  - Compare tasks
  - Display results
@@ -25,3 +23,8 @@ them by having them "fight" against one another:
  - Fights are sorted randomly to remain impartial
  - Offline mode
  - Import from/export to popular todo apps
+
+## Done
+
+ - Add tasks
+ - Remove tasks

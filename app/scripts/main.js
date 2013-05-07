@@ -1,4 +1,4 @@
-/* global $, Taskfight */
+/* global $, Taskfight, Backbone */
 'use strict';
 $(document).ready(function () {
 

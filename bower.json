@@ -6,12 +6,13 @@
     "modernizr": "~2.6.2",
     "jquery": "~1.9.1",
     "lodash": "~1.2.1",
-    "backbone": "~1.0.0"
+    "backbone": "~1.0.0",
+    "handlebars.js": "~1.0.10"
   },
   "devDependencies": {
-    "mocha":"~1.9.0",
-    "chai":"~1.6.0",
-    "sinon":"~1.6.0",
-    "sinon-chai":"~2.4.0"
+    "mocha": "~1.9.0",
+    "chai": "~1.6.0",
+    "sinon": "~1.6.0",
+    "sinon-chai": "~2.4.0"
   }
 }

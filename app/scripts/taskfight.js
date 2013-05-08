@@ -17,10 +17,15 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
   },
 
   routes: {
-
+    '': 'index',
     '!/list': 'list',
     '!/fight': 'fight',
     '!/results': 'results'
+  },
+
+  index: function () {
+
+    this.navigate('!/list',{trigger: true});
   },
 
   list: function () {

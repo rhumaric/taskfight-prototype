@@ -12,6 +12,7 @@ Taskfight.ListView = Backbone.View.extend({
   events: {
     'submit .addTask': 'addTask',
     'click .tf-task--delete': 'deleteTask',
+    'click .tf-next': 'navigateToFight'
   },
 
   initialize: function () {
@@ -22,6 +23,7 @@ Taskfight.ListView = Backbone.View.extend({
     this.$form = this.$('form');
     this.$list = this.$('.tf-tasks');
     this.$empty = this.$('.tf-tasks-empty');
+    this.$next = this.$('.tf-next');
     this.render();
   },
 
@@ -48,6 +50,11 @@ Taskfight.ListView = Backbone.View.extend({
     this.model.remove(model);
   },
 
+  navigateToFight: function (event) {
+
+    // Navigate to the fight page :)
+  },
+
   render: function () {
     console.log('Rendering view');
     if (this.model && !this.model.isEmpty()) {
@@ -68,6 +75,8 @@ Taskfight.ListView = Backbone.View.extend({
     }
 
     this.$form.focus();
+
+    this.$next.attr('disabled', this.model.size() < 2);
   }
 });
 
@@ -75,24 +84,60 @@ Taskfight.ListView.TaskView = Backbone.View.extend({
 
   tagName: 'li',
   className: 'tf-task',
+  templateName: 'list-view--task-view',
 
   events: {
-    'click .tf-task--label': 'editTask'
+    'click .tf-task--label': 'editTask',
+    'submit .tf-task-editor': 'updateTask',
+    'reset .tf-task-editor': 'cancelEdition'
   },
 
   initialize: function () {
 
     this.$el.data('backbone-view', this);
+    this._loadTemplate();
+    this.$label = this.$('.tf-task--label');
+    this.$delete = this.$('.tf-task--delete');
+    this.$editor = this.$('form');
     this.render();
+  },
+
+  _loadTemplate: function () {
+
+    var $script = $('[data-template-name="' + this.templateName + '"]');
+    this.template = Handlebars.compile($script.html());
+    this.$el.html(this.template());
   },
 
   editTask: function () {
     console.log('Editing task');
+    this.isEditing = true;
+    this.render();
+  },
+
+  updateTask: function (event) {
+    event.preventDefault();
+    this.model.set('label', event.target.taskLabel.value);
+    this.cancelEdition();
+  },
+
+  cancelEdition: function () {
+
+    this.isEditing = false;
+    this.render();
   },
 
   render: function () {
-    this.$span = $('<span class="tf-task--label">').html(this.model.get('label'));
-    this.$delete = $('<a class="tf-task--delete" href="">Delete</a>');
-    this.$el.append(this.$span, this.$delete);
+
+    if (!this.isEditing) {
+      this.$label.html(this.model.get('label'));
+      this.$el.append(this.$label, this.$delete);
+      this.$editor.remove();
+    } else {
+      this.$label.remove();
+      this.$delete.remove();
+      this.$editor[0].taskLabel.value = this.model.get('label');
+      this.$el.append(this.$editor);
+    }
   }
 });

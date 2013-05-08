@@ -1,8 +1,185 @@
-body {
-    background: #fafafa;
+/* Bootstrap border-box adjustment */
+
+*{
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    height: auto;
+    font-size: 16px;
 }
+
+/* Color adjustments to the original scheme */
+.btn.btn-primary{
+  background: #f39c12;
+  color: #d35400;
+}
+
+.btn.btn-primary:focus, .btn.btn-primary:hover{
+  
+  background: #f39c12;
+}
+
+a{
+  color: #e74c3c;
+}
+
+a:hover{
+  color: #f39c12;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input {
+    border-color: #e74c3c;
+}
+
+html{
+  background: #2c3e50;
+  font-weight: 700;
+}
+
+select,
+textarea,
+
+body{
+
+  max-width: 512px;
+  margin: auto;
+  background: inherit;
+  color: #ecf0f1;
+  padding: 24px;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.addTask {
+  position: relative;
+  margin-bottom: 34px;
+}
+
+.addTask [type="text"]{
+  width: 100%;
+  padding-left:0;
+  text-indent: 10px;
+  font-size: 16px;
+  margin-bottom: 0;
+  padding: 14px 18px 13px 8px;
+}
+
+input[type="text"]:focus{
+  border-color: #f39c12;
+}
+
+.addTask [type="submit"] {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  
+  padding: 16px 18px 14px;
+
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 900;
+  font-variant: small-caps;
+  letter-spacing: 1px;
+}
+
+.tf-next {
+  width: 50%;
+  margin: 0 auto;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.tf-tasks{
+  padding: 0;
+  margin: 0 0 34px 0;
+}
+
+.tf-task{
+  list-style-type: none;
+  line-height: 34px;
+  font-size: 16px;
+  padding: 9px 0 8px;
+  background: #34495e;
+  position: relative;
+  margin-bottom: 2px;
+}
+
+.tf-task span {
+  padding-left: 10px;
+}
+
+.tf-task--delete {
+ background: #e74c3c;
+ color: #ecf0f1;
+ position: absolute;
+ padding: 9px 19px 8px;
+ right: 0;
+ top: 0;
+ text-decoration: none;
+}
+
+.tf-task--delete:hover, .tf-task--delete:focus {
+  background: #e74c3c;
+  color: #ecf0f1;
+}
+
+.tf-task-editing {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.tf-taskEditor {
+  margin-bottom: 0;
+  position: relative;
+}
+
+.tf-taskEditor input[type="text"] {
+  border-radius: 0;
+  font-size:16px;
+  margin: 0;
+  width: 100%;
+  padding: 14px 18px 13px 8px;
+}
+
+.tf-taskEditor--save.btn.btn-large {
+
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  padding: 15px 18px 16px;
+  border-radius: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tf-taskEditor--save:hover {
+  color: #fff;
+}
+
+.tf-taskEditor--cancel{
+  background: #dce4ec;
+  color: #95a5a6;
+  border: none;
+  line-height: 27px;
+  font-size: 16px;
+  padding: 11px 19px 9px;
+  border-radius: 0;
+  position: absolute;
+  top: 2px;
+  right: 54px;
+}
+
+.tf-taskEditor--cancel:hover{
+  background: #95a5a6;
+};

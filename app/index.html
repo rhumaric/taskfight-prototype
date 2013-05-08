@@ -10,6 +10,8 @@
         <meta name="description" content="Have your task fight to be your top priority!">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="components/flat-ui/css/bootstrap.css">
+        <link rel="stylesheet" href="components/flat-ui/css/flat-ui.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="components/modernizr/modernizr.js"></script>
@@ -29,21 +31,21 @@
             <h1>Task list</h1>
             <form class="addTask">
                 <input type="text" name="taskLabel"/>
-                <input type="submit" value="add" />
+                <button type="submit" class="btn btn-large btn-primary fui-plus-24"></button>
             </form>
             <ul class="tf-tasks">
             </ul>
             <p class="tf-tasks-empty">This list of task is well empty. You must be on top of your priorities already, aren't you.</p>
-            <button class="tf-next">Fight!</button>
+            <button class="tf-next btn btn-large btn-primary btn-block" >Fight!</button>
         </script>
 
         <script type="application/x-handlebars" data-template-name="list-view--task-view">
             <span class="tf-task--label"></span>
-            <a class="tf-task--delete" href="">Delete</a>
-            <form class="tf-task-editor">
+            <a class="tf-task--delete fui-cross-16" href=""></a>
+            <form class="tf-taskEditor">
                 <input type="text" name="taskLabel" />
-                <input type="submit" value="Save" />
-                <input type="reset" value="Cancel" />
+                <button type="submit" class="tf-taskEditor--save btn btn-large btn-primary fui-checkmark-24"></button>
+                <button type="reset" class="tf-taskEditor--cancel btn btn-larget fui-cross-16"></button>
             </form>
         </script>
 </body>

@@ -50,7 +50,7 @@ Taskfight.ListView = Backbone.View.extend({
     this.model.remove(model);
   },
 
-  navigateToFight: function (event) {
+  navigateToFight: function () {
 
     // Navigate to the fight page :)
   },
@@ -74,7 +74,7 @@ Taskfight.ListView = Backbone.View.extend({
       this.$empty.insertAfter(this.$form);
     }
 
-    this.$form.focus();
+    this.$form[0].taskLabel.focus();
 
     this.$next.attr('disabled', this.model.size() < 2);
   }
@@ -88,8 +88,8 @@ Taskfight.ListView.TaskView = Backbone.View.extend({
 
   events: {
     'click .tf-task--label': 'editTask',
-    'submit .tf-task-editor': 'updateTask',
-    'reset .tf-task-editor': 'cancelEdition'
+    'submit .tf-taskEditor': 'updateTask',
+    'reset .tf-taskEditor': 'cancelEdition'
   },
 
   initialize: function () {
@@ -99,6 +99,7 @@ Taskfight.ListView.TaskView = Backbone.View.extend({
     this.$label = this.$('.tf-task--label');
     this.$delete = this.$('.tf-task--delete');
     this.$editor = this.$('form');
+    $(this.$editor[0].taskLabel).on('blur', _.bind(this.cancelEdition, this));
     this.render();
   },
 
@@ -132,12 +133,15 @@ Taskfight.ListView.TaskView = Backbone.View.extend({
     if (!this.isEditing) {
       this.$label.html(this.model.get('label'));
       this.$el.append(this.$label, this.$delete);
+      this.$el.removeClass('tf-task-editing');
       this.$editor.remove();
     } else {
       this.$label.remove();
       this.$delete.remove();
       this.$editor[0].taskLabel.value = this.model.get('label');
+      this.$el.addClass('tf-task-editing');
       this.$el.append(this.$editor);
+      this.$editor[0].taskLabel.focus();
     }
   }
 });

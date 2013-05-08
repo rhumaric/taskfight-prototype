@@ -14,6 +14,7 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
     console.log('Launching Taskfight application');
     this.el = options.el || document.body;
     this.tasks = new Backbone.Collection();
+    this.tasks.add([new Backbone.Model({label: 'Task #1'}), new Backbone.Model({label: 'Task #2'}), new Backbone.Model({label: 'Task #3'})]);
   },
 
   routes: {

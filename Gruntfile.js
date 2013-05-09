@@ -32,6 +32,8 @@ module.exports = function (grunt) {
         tasks: ['livereload']
       }
     },
+
+    // Serves the project
     connect: {
       options: {
         port: 9000,
@@ -47,13 +49,28 @@ module.exports = function (grunt) {
             ];
           }
         }
+      },
+      ui: {
+        options: {
+          middleware: function (connect) {
+            return [mountFolder(connect, 'app')];
+          }
+        }
       }
     },
+
+    // Opens the browser
     open: {
       server: {
         path: 'http://localhost:<%= connect.options.port %>'
       }
+    },
+
+    casperjs: {
+      files: ['test/ui/**/*.js']
     }
+
+
   });
 
 
@@ -62,6 +79,11 @@ module.exports = function (grunt) {
       'connect:livereload',
       'open',
       'regarde'
+    ]);
+
+  grunt.registerTask('ui-test', [
+      'connect:ui',
+      'casperjs'
     ]);
 
   /*grunt.registerTask('test', [

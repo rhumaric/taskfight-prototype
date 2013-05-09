@@ -9,6 +9,7 @@
     "grunt-contrib-livereload": "0.1.1",
     "grunt-contrib-copy": "~0.4.0",
     "grunt-contrib-concat": "~0.1.2",
+    "grunt-casperjs": "~1.0.6",
 
     "grunt-contrib-uglify": "~0.1.1",
     "grunt-contrib-jshint": "~0.1.1",

@@ -10,7 +10,6 @@ them by having them "fight" against one another:
 
 ## Todo
 
- - Edit tasks
  - Compare tasks
  - Display results
  - Design a logo
@@ -28,3 +27,4 @@ them by having them "fight" against one another:
 
  - Add tasks
  - Remove tasks
+ - Edit tasks

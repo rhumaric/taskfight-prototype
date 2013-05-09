@@ -10,7 +10,7 @@ Taskfight.ListView = Backbone.View.extend({
   templateName: 'list-view',
 
   events: {
-    'submit .addTask': 'addTask',
+    'submit .tf-addTask': 'addTask',
     'click .tf-task--delete': 'deleteTask',
     'click .tf-next': 'navigateToFight'
   },

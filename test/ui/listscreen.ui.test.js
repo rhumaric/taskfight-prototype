@@ -109,7 +109,4 @@ casper.waitFor(function () {
   });
 });
 
-
-
-
 casper.run();

@@ -25,6 +25,8 @@
         <script src="components/handlebars.js/dist/handlebars.js"></script>
         <script src="scripts/taskfight.js"></script>
         <script src="scripts/views/ListView.js"></script>
+        <script src="scripts/views/FightView.js"></script>
+        <script src="scripts/views/ResultsView.js"></script>
         <script src="scripts/main.js"></script>
 
         <script type="application/x-handlebars" data-template-name="list-view">
@@ -47,6 +49,21 @@
                 <button type="submit" class="tf-taskEditor--save btn btn-large btn-primary fui-checkmark-24"></button>
                 <button type="reset" class="tf-taskEditor--cancel btn btn-larget fui-cross-16"></button>
             </form>
+        </script>
+
+        <script type="application/x-handlebars" data-template-name="fight-view">
+            <h1>Fight!</h1>
+            <form class="tf-chooseTask">
+                <button type="submit" class="tf-chooseTask--task1"></button>
+                <button type="submit" class="tf-chooseTask--task2"></button>
+            </form>
+            <button class="tf-previous">Task list</button>
+            <button class="tf-next">Results</button>
+        </script>
+
+        <script type="application/x-handlebars" data-template-name="results-view">
+            <h1>Results</h1>
+            <button class="tf-previous">Fight</button>
         </script>
 </body>
 </html>

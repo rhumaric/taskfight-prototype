@@ -52,7 +52,7 @@ Taskfight.ListView = Backbone.View.extend({
 
   navigateToFight: function () {
 
-    // Navigate to the fight page :)
+    this.options.router.navigate(Taskfight.FIGHT_URL, {trigger: true});
   },
 
   render: function () {

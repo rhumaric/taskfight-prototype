@@ -23,8 +23,15 @@ them by having them "fight" against one another:
  - Offline mode
  - Import from/export to popular todo apps
 
+## Refactoring
+
+ - Encapsulate the logic for switching between view in a separate class. 
+   Maybe store all available view in an Array and have some kind of 
+  `set('active', ...)` or `show()` method to set which one is displayed.
+
 ## Done
 
  - Add tasks
  - Remove tasks
  - Edit tasks
+ - Navigate between views

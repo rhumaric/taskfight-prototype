@@ -24,12 +24,11 @@ Taskfight.Ranking = Backbone.Model.extend({
 Taskfight.Rankings = Backbone.Collection.extend({
 
   model: Taskfight.Ranking,
+  comparator: 'score',
 
   initialize: function () {
 
-    this.on('change:score add remove', function() {
-      this.sortBy('score');
-    });
+    this.on('change:score', _.bind(this.sort,this));
   },
 
   /**

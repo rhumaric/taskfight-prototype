@@ -50,9 +50,9 @@ Taskfight.FightView = Backbone.View.extend({
     var battle = this.model.get('currentBattle');
 
     if (battle) {
-      var battleTasks = battle.get('tasks');
-      this.$task1.html(battleTasks[0].get('label')).data('tf-task', battleTasks[0]);
-      this.$task2.html(battleTasks[1].get('label')).data('tf-task', battleTasks[1]);
+      
+      this.$task1.html(battle.get('task').get('label')).data('tf-task', battle.get('task'));
+      this.$task2.html(battle.get('opponent').get('label')).data('tf-task', battle.get('opponent'));
       this.$form.insertAfter(this.$('h1'));
       this.$emptyMessage.remove();
     } else {

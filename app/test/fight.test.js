@@ -86,12 +86,12 @@
         expect(subject.get('currentBattle')).to.equal(subject.battles.at(0));
       });
 
-      it('Should retutn the next battle after a battle has been fought', function () {
+      it('Should return the next battle after a battle has been fought', function () {
 
         var subject = getFight();
         var currentBattle = subject.get('currentBattle');
         var nextBattleIndex = subject.battles.indexOf(currentBattle) + 1;
-        currentBattle.set('winner', currentBattle.get('tasks')[0]);
+        currentBattle.set('winner', currentBattle.get('task'));
 
         expect(subject.get('currentBattle')).to.equal(subject.battles.at(nextBattleIndex));
       });
@@ -101,7 +101,7 @@
         var subject = getFight();
         var currentBattle = null;
         while (currentBattle = subject.get('currentBattle')) {
-          currentBattle.set('winner', currentBattle.get('tasks')[0]);
+          currentBattle.set('winner', currentBattle.get('task'));
         }
 
         expect(subject.get('currentBattle')).to.be.undefined;

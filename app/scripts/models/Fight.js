@@ -17,14 +17,17 @@ Taskfight.Fight = Backbone.Model.extend({
 
     this.tasks.on('add', _.bind(this._addBattles, this));
     this.tasks.on('remove', _.bind(this._removeBattles, this));
+
+    this.battles.on('change:winner', _.bind(this._updateCurrentBattle, this));
+    this._updateCurrentBattle();
   },
 
   // *** Public API ***
-  getCurrentBattle: function () {
+  _updateCurrentBattle: function () {
 
-    return this.battles.find(function (battle) {
+    this.set('currentBattle', this.battles.find(function (battle) {
       return !battle.isComplete();
-    });
+    }));
   },
 
   // *** Internals ***
@@ -39,6 +42,7 @@ Taskfight.Fight = Backbone.Model.extend({
         }));
       }
     });
+    this._updateCurrentBattle();
   },
 
   _removeBattles: function (task) {
@@ -50,5 +54,6 @@ Taskfight.Fight = Backbone.Model.extend({
     });
 
     this.battles.remove(tasksBattles);
+    this._updateCurrentBattle();
   }
 });

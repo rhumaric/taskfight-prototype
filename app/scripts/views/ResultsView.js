@@ -28,6 +28,6 @@ Taskfight.ResultsView = Backbone.View.extend({
   },
 
   render: function () {
-
+    
   }
 });

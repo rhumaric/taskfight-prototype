@@ -55,33 +55,33 @@
       });
     });
 
-    describe('#getCurrentBattle()', function () {
+    describe('@currentBattle', function () {
 
       it('Should return the first battle if no battle has been fought yet', function () {
 
         var subject = getFight();
-        expect(subject.getCurrentBattle()).to.equal(subject.battles.at(0));
+        expect(subject.get('currentBattle')).to.equal(subject.battles.at(0));
       });
 
       it('Should retutn the next battle after a battle has been fought', function () {
 
         var subject = getFight();
-        var currentBattle = subject.getCurrentBattle();
+        var currentBattle = subject.get('currentBattle');
         var nextBattleIndex = subject.battles.indexOf(currentBattle) + 1;
         currentBattle.set('winner', currentBattle.get('tasks')[0]);
 
-        expect(subject.getCurrentBattle()).to.equal(subject.battles.at(nextBattleIndex));
+        expect(subject.get('currentBattle')).to.equal(subject.battles.at(nextBattleIndex));
       });
 
       it('Should return `undefined` if all battle have been fought', function () {
 
         var subject = getFight();
         var currentBattle = null;
-        while (currentBattle = subject.getCurrentBattle()) {
+        while (currentBattle = subject.get('currentBattle')) {
           currentBattle.set('winner', currentBattle.get('tasks')[0]);
         }
 
-        expect(subject.getCurrentBattle()).to.be.undefined;
+        expect(subject.get('currentBattle')).to.be.undefined;
       });
     });
   });

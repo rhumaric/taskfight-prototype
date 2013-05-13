@@ -10,11 +10,14 @@ them by having them "fight" against one another:
 
 ## Todo
 
- - Compare tasks
  - Display results
+ - Style compare tasks and display results views
+ - Add feedback about which task was chosen in the previous fight
+ - Add a Skip button ?
+ - Redirect to results when all battles are completed
  - Design a logo
  - Design the application style
- - Add support for French
+ - Add support for French language
  - Have an history of the fights you have
  - Add new tasks afterwards
  - Edit results afterwards
@@ -35,3 +38,4 @@ them by having them "fight" against one another:
  - Remove tasks
  - Edit tasks
  - Navigate between views
+ - Compare tasks

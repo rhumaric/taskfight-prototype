@@ -30,7 +30,7 @@ Taskfight.ResultsView = Backbone.View.extend({
   },
 
   render: function () {
-    
+
     var elements = [];
     this.model.rankings.each(function (ranking) {
 

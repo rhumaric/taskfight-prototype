@@ -48,6 +48,8 @@ body{
   background: inherit;
   color: #ecf0f1;
   padding: 24px;
+
+  counter-reset: rankings;
 }
 
 h1 {
@@ -56,6 +58,37 @@ h1 {
   text-align: center;
 }
 
+
+/** Navigation */
+.tf-next, .tf-previous {
+  width: 46%;
+  margin: 0 1%;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-family: Lato, sans-serif;
+  font-size: 15px;
+  color: rgba(255,255,255,.66);
+  background: none;
+}
+
+.tf-next {
+  text-align: right;
+}
+
+.tf-previous{
+  text-align: left;
+}
+
+.tf-next-fight {
+  display:block;
+  margin: 0 auto;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 17px;
+  text-align: center;
+}
+
+/** Task list */
 .tf-addTask {
   position: relative;
   margin-bottom: 34px;
@@ -84,14 +117,6 @@ button.tf-addTask--add.btn {
   font-weight: 900;
   font-variant: small-caps;
   letter-spacing: 1px;
-}
-
-.tf-next {
-  width: 50%;
-  margin: 0 auto;
-  text-transform: uppercase;
-  font-weight: 900;
-  letter-spacing: 2px;
 }
 
 .tf-tasks{
@@ -178,4 +203,48 @@ button.tf-addTask--add.btn {
 
 .tf-taskEditor--cancel:hover{
   background: #95a5a6;
-};
+}
+
+/** Fight screen */
+
+.tf-chooseTask {
+  padding: 17px 0;
+}
+
+.btn.btn-large.tf-chooseTask--task {
+  width: 46%;
+  margin: 0 1%;
+  height: auto;
+  padding: 85px inherit;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: Lato, sans-serif;
+}
+
+/** Rankings screen */
+
+.tf-rankings .tf-task {
+  padding: 0;
+}
+
+.tf-rankings .tf-task:before{
+
+  counter-increment: rankings;
+  content: counter(rankings);
+  display: inline-block;
+  padding: 9px 19px 8px;
+  margin-right: 10px;
+}
+
+.tf-rankings .tf-task:nth-child(1):before{
+  background: rgba(231, 76,60, 1);
+}
+
+.tf-rankings .tf-task:nth-child(2):before{
+  background: rgba(231, 76,60, .66);
+}
+
+.tf-rankings .tf-task:nth-child(3):before{
+  background: rgba(231, 76,60, .33);
+}

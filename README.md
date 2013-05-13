@@ -13,6 +13,7 @@ them by having them "fight" against one another:
  - Style compare tasks and display results views
  - Add more automated UI tests
  - Remove points from battles that get removed after a task is removed
+ - Prevent navigation to fights and results if there is less than 2 active tasks (redirect to list)
  - Add feedback about which task was chosen in the previous fight
  - Add a Skip button ?
  - Redirect to results when all battles are completed

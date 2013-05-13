@@ -12,7 +12,6 @@ var numberOfItems = 0;
 
 casper.then(function () {
 
-  this.capture('state.png');
   numberOfItems = this.evaluate(function () {
     return document.querySelector('.tf-tasks').children.length;
   });

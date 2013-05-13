@@ -1,15 +1,6 @@
 'use strict';
 var casper = require('casper').create();
 
-// Scenarios
-function getNumberOfTasks() {
-  return this.evaluate(function () {
-    var element = document.querySelector('.tf-tasks');
-    return element ? element.children.lenght : NaN;
-  });
-}
-
-
 casper.start('http://localhost:9000');
 
 // As a user I first want to list the tasks I must prioritize
@@ -30,7 +21,6 @@ casper.then(function () {
 // As a user I want to add a new task to the list
 casper.then(function () {
   this.sendKeys('.tf-addTask--label', 'A new task');
-  this.capture('after-entry.png');
   casper.click('.tf-addTask--add');
 });
 
@@ -52,11 +42,10 @@ casper.then(function () {
 
 casper.then(function () {
 
-  this.capture('edit.png');
   var editorValue = this.evaluate(function () {
     return document.querySelector('.tf-taskEditor [name="taskLabel"]').value;
   });
-  this.test.assertMatch(editorValue, /Task #1/, 'Editor is pre-filed with current task label');
+  this.test.assertMatch(editorValue, /Have a tea/, 'Editor is pre-filed with current task label');
   casper.sendKeys('.tf-taskEditor [name="taskLabel"]', 'Renamed task');
   casper.click('.tf-taskEditor--save');
 });
@@ -92,7 +81,6 @@ var numberOfItems = 0;
 
 casper.then(function () {
 
-  this.capture('state.png');
   numberOfItems = this.evaluate(function () {
     return document.querySelector('.tf-tasks').children.length;
   });

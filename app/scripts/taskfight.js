@@ -13,8 +13,9 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
 
     console.log('Launching Taskfight application');
     this.$el = $(options.el || document.body);
-    this.tasks = new Backbone.Collection();
-    this.tasks.add([new Backbone.Model({label: 'Task #1'}), new Backbone.Model({label: 'Task #2'}), new Backbone.Model({label: 'Task #3'})]);
+    this.fight = new Taskfight.Fight();
+    this.fight.tasks = new Backbone.Collection();
+    this.fight.tasks.add([new Backbone.Model({label: 'Have a tea'}), new Backbone.Model({label: 'Take a nap'}), new Backbone.Model({label: 'Read a book'})]);
   },
 
   routes: {
@@ -32,7 +33,7 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
   list: function () {
     console.log('Displaying list page');
     this.listView = new Taskfight.ListView({
-      model: this.tasks,
+      model: this.fight.tasks,
       router: this
     });
     if (this.fightView) {
@@ -47,6 +48,7 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
   fight: function () {
     console.log('Displaying fight page');
     this.fightView = new Taskfight.FightView({
+      model: this.fight,
       router: this
     });
     if (this.listView) {
@@ -61,6 +63,7 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
   results: function () {
     console.log('Displaying results page');
     this.resultsView = new Taskfight.ResultsView({
+      model: this.fight,
       router: this
     });
     if (this.listView) {

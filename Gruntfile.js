@@ -27,6 +27,7 @@ module.exports = function (grunt) {
           '<%= project.sources %>/*.html',
           '{.tmp,<%= project.sources %>}/styles/{,*/}*.css',
           '{.tmp,<%= project.sources %>}/scripts/**/*.js',
+          '{.tmp,<%= project.sources %>}/test/**/*.js',
           '<%= project.sources %>/images/{,*/}*.{png,jpg,jpeg,webp}'
         ],
         tasks: ['livereload']
@@ -50,7 +51,7 @@ module.exports = function (grunt) {
           }
         }
       },
-      ui: {
+      test: {
         options: {
           middleware: function (connect) {
             return [mountFolder(connect, 'app')];
@@ -66,11 +67,20 @@ module.exports = function (grunt) {
       }
     },
 
+    // Runs UI tests with CasperJS
     casperjs: {
       files: ['test/ui/**/*.js']
+    },
+
+    // Runs code tests
+    mocha: {
+      all: {
+        options: {
+          run: true,
+          urls: ['http://localhost:<%= connect.options.port %>/test.html']
+        }
+      }
     }
-
-
   });
 
 
@@ -82,16 +92,16 @@ module.exports = function (grunt) {
     ]);
 
   grunt.registerTask('ui-test', [
-      'connect:ui',
+      'connect:test',
       'casperjs'
     ]);
 
-  /*grunt.registerTask('test', [
-    'clean:server',
+  grunt.registerTask('test', [
     'connect:test',
     'mocha'
   ]);
 
+  /*
   grunt.registerTask('build', [
     'clean:dist',
     'useminPrepare',

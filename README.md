@@ -10,8 +10,9 @@ them by having them "fight" against one another:
 
 ## Todo
 
- - Display results
  - Style compare tasks and display results views
+ - Add more automated UI tests
+ - Remove points from battles that get removed after a task is removed
  - Add feedback about which task was chosen in the previous fight
  - Add a Skip button ?
  - Redirect to results when all battles are completed
@@ -39,3 +40,4 @@ them by having them "fight" against one another:
  - Edit tasks
  - Navigate between views
  - Compare tasks
+ - Display results

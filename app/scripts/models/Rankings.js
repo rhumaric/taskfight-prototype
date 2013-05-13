@@ -1,4 +1,4 @@
-/* global Taskfight, Backbone */
+/* global Taskfight, Backbone, _ */
 'use strict';
 
 /**
@@ -24,11 +24,14 @@ Taskfight.Ranking = Backbone.Model.extend({
 Taskfight.Rankings = Backbone.Collection.extend({
 
   model: Taskfight.Ranking,
-  comparator: 'score',
+  comparator: function (ranking) {
+
+    return -1 * ranking.get('score');
+  },
 
   initialize: function () {
 
-    this.on('change:score', _.bind(this.sort,this));
+    this.on('change:score', _.bind(this.sort, this));
   },
 
   /**

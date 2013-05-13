@@ -55,6 +55,20 @@
       });
     });
 
+    describe('Scoring', function () {
+
+      it('Should tasks ranking when a battle is completed', function () {
+
+        var subject = getFight();
+        var battle = subject.get('currentBattle');
+        var task = battle.get('task');
+        battle.set('winner', task);
+
+        var ranking = subject.rankings.getRanking(task);
+        expect(ranking.get('score')).to.equal(1);
+      });
+    });
+
     describe('#rankings', function () {
 
       it('Should contain the ranking for a task after it has beed added', function () {

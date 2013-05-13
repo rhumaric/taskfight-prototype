@@ -12,6 +12,8 @@ Taskfight.ResultsView = Backbone.View.extend({
   initialize: function () {
 
     this._loadTemplate();
+    this.$rankings = this.$('.tf-rankings');
+    this.model.rankings.on('sort', _.bind(this.render, this));
     this.render();
   },
 
@@ -29,5 +31,13 @@ Taskfight.ResultsView = Backbone.View.extend({
 
   render: function () {
     
+    var elements = [];
+    this.model.rankings.each(function (ranking) {
+
+      var $li = $('<li class="tf-task">').html(ranking.get('task').get('label'));
+      elements.push($li);
+    });
+
+    this.$rankings.empty().append(elements);
   }
 });

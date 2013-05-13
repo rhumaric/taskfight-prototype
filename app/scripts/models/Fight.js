@@ -31,10 +31,13 @@ Taskfight.Fight = Backbone.Model.extend({
     this._updateCurrentBattle();
   },
 
-  _updateRankings: function (task) {
-
-    //var ranking = this.rankings.getRanking(task);
-    //ranking.set('score', ranking.get('score') + 1);
+  _updateRankings: function (battle, winner) {
+    console.log(arguments);
+    console.log('Updating ranking', winner);
+    var ranking = this.rankings.getRanking(winner);
+    if(ranking) {
+      ranking.set('score', ranking.get('score') + 1);
+    }
   },
 
   _updateCurrentBattle: function () {

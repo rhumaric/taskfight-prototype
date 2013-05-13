@@ -71,50 +71,57 @@ describe('Taskfight.Rankings', function () {
 
       var subject = new Taskfight.Rankings(this.rankings);
       
-      expect(subject.indexOf(this.rankings[0])).to.equal(1);
-      expect(subject.indexOf(this.rankings[1])).to.equal(3);
-      expect(subject.indexOf(this.rankings[2])).to.equal(2);
-      expect(subject.indexOf(this.rankings[3])).to.equal(0);
+      expect(subject.indexOf(this.rankings[0])).to.equal(2);
+      expect(subject.indexOf(this.rankings[1])).to.equal(0);
+      expect(subject.indexOf(this.rankings[2])).to.equal(1);
+      expect(subject.indexOf(this.rankings[3])).to.equal(3);
     });
 
     it('Should sort the rankings when score changes', function () {
 
       var subject = new Taskfight.Rankings(this.rankings);
       this.rankings[2].set('score', 2);
-      var rankings = this.rankings;
-      subject.on('sort', function (){
-        expect(subject.indexOf(this.rankings[0])).to.equal(2);
-        expect(subject.indexOf(this.rankings[1])).to.equal(3);
-        expect(subject.indexOf(this.rankings[2])).to.equal(0);
-        expect(subject.indexOf(this.rankings[3])).to.equal(1);
-      });
+      expect(subject.indexOf(this.rankings[0])).to.equal(1);
+      expect(subject.indexOf(this.rankings[1])).to.equal(0);
+      expect(subject.indexOf(this.rankings[2])).to.equal(3);
+      expect(subject.indexOf(this.rankings[3])).to.equal(2);
     });
 
-    it('Should sort the rankings when a new ranking is added', function () {
+    it('Should sort the rankings when a new ranking is added', function (done) {
 
       var subject= new Taskfight.Rankings(this.rankings);
       var extraRanking = new Taskfight.Ranking({score: 20});
+
       var rankings = this.rankings;
-      subject.on('sort', function (){
-        expect(subject.indexOf(rankings[0])).to.equal(1);
-        expect(subject.indexOf(rankings[1])).to.equal(4);
-        expect(subject.indexOf(rankings[2])).to.equal(3);
-        expect(subject.indexOf(rankings[3])).to.equal(0);
+      subject.on('sort', function () {
+        expect(subject.indexOf(rankings[0])).to.equal(3);
+        expect(subject.indexOf(rankings[1])).to.equal(0);
+        expect(subject.indexOf(rankings[2])).to.equal(1);
+        expect(subject.indexOf(rankings[3])).to.equal(4);
         expect(subject.indexOf(extraRanking)).to.equal(2);
+        done();
       });
+
+      subject.add(extraRanking);
     });
 
-    it('Should sort the rankings when a ranking is removed', function () {
+    it('Should sort the rankings when a ranking is removed', function (done) {
 
-      var subject= new Taskfight.Rankings(this.rankings);
-      subject.remove(this.rankings[2]);
+      var subject = new Taskfight.Rankings(this.rankings);
+     
       var rankings = this.rankings;
-      subject.on('sort', function (){
+      
+      subject.on('remove', function () {
         expect(subject.indexOf(rankings[0])).to.equal(1);
-        expect(subject.indexOf(rankings[1])).to.equal(2);
+        expect(subject.indexOf(rankings[1])).to.equal(0);
         expect(subject.indexOf(rankings[2])).to.equal(-1);
-        expect(subject.indexOf(rankings[3])).to.equal(0);
+        expect(subject.indexOf(rankings[3])).to.equal(2);
+        done();
       });
+
+      expect(subject.contains(this.rankings[2])).to.be.true;
+      subject.remove(this.rankings[2]);
+      expect(subject.size()).to.equal(3);
     });
   });
 });

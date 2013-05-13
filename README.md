@@ -10,7 +10,6 @@ them by having them "fight" against one another:
 
 ## Todo
 
- - Style compare tasks and display results views
  - Add more automated UI tests
  - Remove points from battles that get removed after a task is removed
  - Prevent navigation to fights and results if there is less than 2 active tasks (redirect to list)
@@ -42,3 +41,4 @@ them by having them "fight" against one another:
  - Navigate between views
  - Compare tasks
  - Display results
+ - Style compare tasks and display results views

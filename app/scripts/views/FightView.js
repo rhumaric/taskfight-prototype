@@ -5,6 +5,7 @@ Taskfight.FightView = Backbone.View.extend({
 
   templateName: 'fight-view',
   events: {
+    // Can't use `submit` event as it doesn't allow to see which button was clicked
     'click .tf-chooseTask--task': 'chooseTask',
     'click .tf-previous': 'navigateToList',
     'click .tf-next': 'navigateToResults'

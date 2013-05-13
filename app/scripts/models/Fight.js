@@ -12,25 +12,36 @@ Taskfight.Fight = Backbone.Model.extend({
 
   initialize: function () {
 
+    // Set of tasks to prioritise
     this.tasks = new Backbone.Collection();
+
+    // List of comparisons to do
     this.battles = new Backbone.Collection();
 
+    // The rankings
+    this.rankings = new Taskfight.Rankings();
+
     this.tasks.on('add', _.bind(this._addBattles, this));
+    this.tasks.on('add', _.bind(this.rankings.addTask, this.rankings));
     this.tasks.on('remove', _.bind(this._removeBattles, this));
+    this.tasks.on('remove', _.bind(this.rankings.removeTask, this.rankings));
 
     this.battles.on('change:winner', _.bind(this._updateCurrentBattle, this));
+    this.battles.on('change:winner', _.bind(this._updateRankings, this));
     this._updateCurrentBattle();
   },
 
-  // *** Public API ***
+  _updateRankings: function () {
+
+
+  },
+
   _updateCurrentBattle: function () {
 
     this.set('currentBattle', this.battles.find(function (battle) {
       return !battle.isComplete();
     }));
   },
-
-  // *** Internals ***
 
   _addBattles: function (task) {
     var battles = this.battles;

@@ -55,6 +55,29 @@
       });
     });
 
+    describe('#rankings', function () {
+
+      it('Should contain the ranking for a task after it has beed added', function () {
+
+        var subject = getFight();
+
+        expect(subject.rankings.size()).to.equal(3);
+
+        expect(subject.rankings.getRanking(tasks[0])).not.to.be.undefined;
+        expect(subject.rankings.getRanking(tasks[1])).not.to.be.undefined;
+        expect(subject.rankings.getRanking(tasks[2])).not.to.be.undefined;
+      });
+
+      it('Should no longer contain the ranking for a task after it has been removed', function () {
+
+        var subject = getFight();
+        subject.tasks.remove(tasks[1]);
+
+        expect(subject.rankings.size()).to.equal(2);
+        expect(subject.rankings.getRanking(tasks[1])).to.be.undefined;
+      });
+    });
+
     describe('@currentBattle', function () {
 
       it('Should return the first battle if no battle has been fought yet', function () {

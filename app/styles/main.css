@@ -43,6 +43,7 @@ textarea,
 
 body{
 
+  width: 100%;
   max-width: 512px;
   margin: auto;
   background: inherit;
@@ -60,32 +61,27 @@ h1 {
 
 
 /** Navigation */
-.tf-next, .tf-previous {
-  width: 46%;
-  margin: 0 1%;
-  font-weight: 400;
-  letter-spacing: 2px;
-  font-family: Lato, sans-serif;
-  font-size: 15px;
-  color: rgba(255,255,255,.66);
-  background: none;
+.tf-nav {
+  margin: 0;
+  padding: 0;
+  display: table;
+  width: 100%;
 }
 
-.tf-next {
-  text-align: right;
-}
-
-.tf-previous{
-  text-align: left;
-}
-
-.tf-next-fight {
-  display:block;
-  margin: 0 auto;
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 17px;
+.tf-nav--view {
+  display: table-cell;
+  width: 33%;
+  list-style-type: none;
   text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.tf-nav--view-current {
+  color: #f39c12;
 }
 
 /** Task list */

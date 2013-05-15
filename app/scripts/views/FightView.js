@@ -31,18 +31,17 @@ Taskfight.FightView = Backbone.View.extend({
 
   navigateToList: function () {
 
-    console.log('Navigating to List view');
     this.options.router.navigate(Taskfight.LIST_URL, {trigger: true});
   },
 
   navigateToResults: function () {
 
-    console.log('Navigating to Results view');
     this.options.router.navigate(Taskfight.RESULTS_URL, {trigger: true});
   },
 
   chooseTask: function (event) {
 
+    console.log('Choosing task');
     event.preventDefault();
     var task = $(event.target).data('tf-task');
     this.model.get('currentBattle').set('winner', task);

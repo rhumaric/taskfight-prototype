@@ -27,6 +27,7 @@
         <script src="scripts/models/Battles.js"></script>
         <script src="scripts/models/Rankings.js"></script>
         <script src="scripts/models/Fight.js"></script>
+        <script src="scripts/views/NavigationView.js"></script>
         <script src="scripts/views/ListView.js"></script>
         <script src="scripts/views/FightView.js"></script>
         <script src="scripts/views/ResultsView.js"></script>
@@ -41,7 +42,6 @@
             <ul class="tf-tasks">
             </ul>
             <p class="tf-tasks-empty">This list of task is well empty. You must be on top of your priorities already, aren't you.</p>
-            <button class="tf-next tf-next-fight btn btn-large btn-primary" >Fight!</button>
         </script>
 
         <script type="application/x-handlebars" data-template-name="list-view--task-view">
@@ -61,15 +61,12 @@
                 <button type="submit" class="tf-chooseTask--task tf-chooseTask--task2 btn btn-large btn-primary"></button>
             </form>
             <p class="tf-noBattles">There's no more battles to fight. It's time to look at the results.</p>
-            <button class="tf-previous btn btn-large">Task list</button>
-            <button class="tf-next btn btn-large">Results</button>
         </script>
 
         <script type="application/x-handlebars" data-template-name="results-view">
             <h1>Rankings</h1>
             <ol class="tf-tasks tf-rankings">
             </ol>
-            <button class="tf-previous btn btn-large">Fight</button>
         </script>
 </body>
 </html>

@@ -41,12 +41,13 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
       });
     }
     if (this.fightView) {
-      this.fightView.remove();
+      this.fightView.$el.remove();
     }
     if (this.resultsView) {
-      this.resultsView.remove();
+      this.resultsView.$el.remove();
     }
     this.$el.append(this.listView.el);
+    this.listView.delegateEvents();
   },
 
   fight: function () {
@@ -72,6 +73,7 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
       this.resultsView.remove();
     }
     this.$el.append(this.fightView.el);
+    this.fightView.delegateEvents();
   },
 
   results: function () {
@@ -90,12 +92,13 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
       });
     }
     if (this.listView) {
-      this.listView.remove();
+      this.listView.$el.remove();
     }
     if (this.fightView) {
-      this.fightView.remove();
+      this.fightView.$el.remove();
     }
     this.$el.append(this.resultsView.el);
+    this.resultsView.delegateEvents();
   }
 });
 

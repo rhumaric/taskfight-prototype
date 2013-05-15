@@ -31,11 +31,13 @@ Taskfight.FightView = Backbone.View.extend({
 
   navigateToList: function () {
 
+    console.log('Navigating to List view');
     this.options.router.navigate(Taskfight.LIST_URL, {trigger: true});
   },
 
   navigateToResults: function () {
 
+    console.log('Navigating to Results view');
     this.options.router.navigate(Taskfight.RESULTS_URL, {trigger: true});
   },
 

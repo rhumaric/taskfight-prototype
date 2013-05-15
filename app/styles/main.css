@@ -215,7 +215,7 @@ button.tf-addTask--add.btn {
   width: 46%;
   margin: 0 1%;
   height: auto;
-  padding: 85px inherit;
+  padding: 85px 0;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;

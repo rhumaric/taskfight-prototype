@@ -33,10 +33,13 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
 
   list: function () {
     console.log('Displaying list page');
-    this.listView = new Taskfight.ListView({
-      model: this.fight.tasks,
-      router: this
-    });
+
+    if(!this.listView){
+      this.listView = new Taskfight.ListView({
+        model: this.fight.tasks,
+        router: this
+      });
+    }
     if (this.fightView) {
       this.fightView.remove();
     }
@@ -48,10 +51,20 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
 
   fight: function () {
     console.log('Displaying fight page');
-    this.fightView = new Taskfight.FightView({
-      model: this.fight,
-      router: this
-    });
+
+    // Prevent navigation if there is not enough tasks to sort
+    if (this.fight.tasks.size() < 2) {
+      this.navigate(Taskfight.LIST_URL, {trigger: true});
+      return;
+    }
+
+    if(!this.fightView){
+      this.fightView = new Taskfight.FightView({
+        model: this.fight,
+        router: this
+      });
+    }
+
     if (this.listView) {
       this.listView.remove();
     }
@@ -63,10 +76,19 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
 
   results: function () {
     console.log('Displaying results page');
-    this.resultsView = new Taskfight.ResultsView({
-      model: this.fight,
-      router: this
-    });
+
+    // Prevent navigation if there is not enough tasks to sort
+    if (this.fight.tasks.size() < 2) {
+      this.navigate(Taskfight.LIST_URL, {trigger: true});
+      return;
+    }
+
+    if(!this.resultsView){
+      this.resultsView = new Taskfight.ResultsView({
+        model: this.fight,
+        router: this
+      });
+    }
     if (this.listView) {
       this.listView.remove();
     }

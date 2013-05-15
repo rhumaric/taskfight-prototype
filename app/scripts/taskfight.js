@@ -1,4 +1,4 @@
-/* global Backbone, $ */
+/* global Backbone, $, _ */
 'use strict';
 
 /**
@@ -6,6 +6,13 @@
  * instanciated. Act as a namespace to store the other classes
  */
 var Taskfight = window.Taskfight = Backbone.Router.extend({
+
+  routes: {
+    '': 'index',
+    '!/list': 'list',
+    '!/fight': 'fight',
+    '!/results': 'results'
+  },
 
   initialize: function (options) {
 
@@ -22,7 +29,7 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
 
     // Init the navigation
     // Idealy, this would use the router's `route` parameter...
-    var routes = new Backbone.Collection([
+    this.routesForNavigation = new Backbone.Collection([
       new Backbone.Model({
         title: 'List',
         route: 'list'
@@ -39,7 +46,7 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
 
     this.navigation = new Taskfight.NavigationView({
       router: this,
-      model: routes
+      model: this.routesForNavigation
     });
     this.$el.append(this.navigation.el);
 
@@ -59,13 +66,30 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
         router: this
       })
     };
+
+    _.each(_.values(this.views), _.bind(function (view) {
+      this.$el.prepend(view.el);
+    }, this));
+
+    this.fight.tasks.on('add remove', _.bind(this._updateEnabledRoutes, this));
+    this._updateEnabledRoutes();
   },
 
-  routes: {
-    '': 'index',
-    '!/list': 'list',
-    '!/fight': 'fight',
-    '!/results': 'results'
+  _updateEnabledRoutes: function () {
+
+    var routes = this.routesForNavigation.filter(function (route) {
+
+      return route.get('route') !== 'list';
+    });
+
+    var disabled = true;
+    if (this.fight.hasEnoughTasks()) {
+      disabled = false;
+    }
+
+    _.each(routes, function (route) {
+      route.set('disabled', disabled);
+    });
   },
 
   index: function () {
@@ -75,10 +99,9 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
 
   list: function () {
 
-    this.views.fight.remove();
-    this.views.results.remove();
-    this.$el.prepend(this.views.list.el);
-    this.views.list.delegateEvents();
+    this.views.fight.$el.hide();
+    this.views.results.$el.hide();
+    this.views.list.$el.show();
   },
 
   fight: function () {
@@ -89,10 +112,9 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
       return;
     }
 
-    this.views.list.remove();
-    this.views.results.remove();
-    this.$el.prepend(this.views.fight.el);
-    this.views.fight.delegateEvents();
+    this.views.list.$el.hide();
+    this.views.results.$el.hide();
+    this.views.fight.$el.show();
   },
 
   results: function () {
@@ -104,10 +126,9 @@ var Taskfight = window.Taskfight = Backbone.Router.extend({
       return;
     }
 
-    this.views.list.$el.remove();
-    this.views.fight.$el.remove();
-    this.$el.prepend(this.views.results.el);
-    this.views.results.delegateEvents();
+    this.views.list.$el.hide();
+    this.views.fight.$el.hide();
+    this.views.results.$el.show();
   }
 });
 

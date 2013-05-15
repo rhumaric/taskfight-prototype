@@ -31,6 +31,13 @@ Taskfight.Fight = Backbone.Model.extend({
     this._updateCurrentBattle();
   },
 
+  // PUBLIC API
+  hasEnoughTasks: function () {
+    return this.tasks.size() > 1;
+  },
+
+  // INTERNALS
+
   _updateRankings: function (battle, winner) {
     console.log(arguments);
     console.log('Updating ranking', winner);
@@ -48,7 +55,7 @@ Taskfight.Fight = Backbone.Model.extend({
   },
 
   _addBattles: function (task) {
-    this.battles.addBattles(task,this.tasks);
+    this.battles.addBattles(task, this.tasks);
     this._updateCurrentBattle();
   },
 

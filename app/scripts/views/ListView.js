@@ -44,7 +44,7 @@ Taskfight.ListView = Backbone.View.extend({
   },
 
   deleteTask: function (event) {
-    console.log('Deleting item');
+
     event.preventDefault();
     var model = $(event.target.parentElement).data('backbone-view').model;
     this.model.remove(model);

@@ -38,13 +38,38 @@ Taskfight.NavigationView = Backbone.View.extend({
 
     var availableViews = [];
     var availableView;
-    this.model.each(function (view) {
+    this.model.each(function (route) {
 
-      availableView = $('<li class="tf-nav--view">').html(view.get('title'))
-                                                    .attr('data-route', view.get('route'));
-      availableViews.push(availableView);
+      availableView = new Taskfight.NavigationViewItem({
+        model: route
+      });
+      availableViews.push(availableView.el);
     });
 
     this.$el.append(availableViews);
+  }
+});
+
+Taskfight.NavigationViewItem = Backbone.View.extend({
+
+  tagName: 'li',
+  className: 'tf-nav--view',
+
+  initialize: function () {
+
+
+    this.model.on('change:disabled', _.bind(this.render, this));
+    this.render();
+  },
+
+  render: function () {
+    this.$el.html(this.model.get('title'))
+            .attr('data-route', this.model.get('route'));
+
+    if (this.model.get('disabled')) {
+      this.$el.addClass('tf-nav--view-disabled');
+    } else {
+      this.$el.removeClass('tf-nav--view-disabled');
+    }
   }
 });

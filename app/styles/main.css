@@ -75,13 +75,19 @@ h1 {
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
-  letter-spacing: 2px;
-  font-size: 17px;
+  letter-spacing: 3px;
+  color: #ecf0f1;
   cursor: pointer;
 }
 
 .tf-nav--view-current {
   color: #f39c12;
+  font-weight: 900;
+}
+
+.tf-nav--view-disabled {
+  color: #34495e;
+  cursor: default;
 }
 
 /** Task list */
